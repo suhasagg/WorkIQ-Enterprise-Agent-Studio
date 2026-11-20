@@ -51,10 +51,6 @@ happened. This project implements those parts end to end as one working applicat
 
 ## Product tour
 
-All screenshots are produced by [`web/screenshots/capture.spec.ts`](web/screenshots/capture.spec.ts), which drives the
-real application: it starts workflows, approves and rejects actions, uploads a document and runs evaluations.
-Nothing is mocked. The full set of 42 is in [`docs/screenshots`](docs/screenshots).
-
 ### Workflow Studio: the graph as it runs
 
 The compiled LangGraph topology with live node state. Here a Weekly Business Review is paused at the approval gate.
