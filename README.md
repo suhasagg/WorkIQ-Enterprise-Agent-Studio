@@ -247,19 +247,6 @@ make e2e           # Playwright, against a running stack
 make screenshots   # regenerate docs/screenshots
 ```
 
-## What is real and what is simulated
-
-| Real | Simulated or not verified |
-|---|---|
-| LangGraph graph, subgraphs, interrupts, PostgreSQL checkpoints, recovery | **Model**: a deterministic, rule-based local model produces plans and text. No LLM is called by default. |
-| MCP protocol: client sessions, tool discovery, schemas, calls over stdio | **MCP servers**: Work IQ M365, tracker, helpdesk and metrics are local servers over synthetic records. |
-| Policy engine, RBAC, approvals, idempotency, audit hash chain | **OpenAI mode** is implemented but was not run here (no API key available). |
-| Ingestion, pgvector and full-text retrieval, reranking, citations | **Embeddings** are local hashed bag-of-words vectors: good for the demo, not semantic. Use OpenAI embeddings for real content. |
-| Telemetry, metrics, evaluations, all UI behaviour | **GitHub remote MCP** is registered but not connected (needs `GITHUB_TOKEN`). **OTLP export** and **LangSmith** are off unless configured. |
-
-Known limits: the run executor and the rate limiter are in-process, so the API is meant to run as a single replica;
-scaling out needs a shared queue and a distributed limiter. See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
-
 ## Project layout
 
 ```
