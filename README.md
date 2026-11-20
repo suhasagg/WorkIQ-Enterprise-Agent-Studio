@@ -30,11 +30,6 @@ happened. This project implements those parts end to end as one working applicat
 | **Governance** | JWT auth, four roles, server-side policy on every tool call, approvals bound to the exact parameters, hash-chained audit log. |
 | **Evidence** | Persisted events, tool and model telemetry, Prometheus metrics, OpenTelemetry spans, and three evaluation datasets with quality gates. |
 
-> **Honest scope.** The default configuration is a self-contained demo: a deterministic local model (no LLM API calls),
-> local hash embeddings, and four **simulated** MCP servers backed by synthetic data for a fictional company.
-> They speak the real MCP protocol, but they are not live Microsoft 365, Jira or Zendesk tenants. See
-> [What is real and what is simulated](#what-is-real-and-what-is-simulated).
-
 ## Features
 
 - **Four business workflows**, each a path through the same graph:
