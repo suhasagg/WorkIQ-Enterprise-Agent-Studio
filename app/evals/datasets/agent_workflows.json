@@ -1,0 +1,148 @@
+{
+  "id": "agent_workflows",
+  "name": "Agent workflow quality",
+  "kind": "agent",
+  "description": "Runs each business workflow through the real LangGraph graph in propose-only mode (no approvals, no writes) and scores groundedness, citation correctness, completeness and task success.",
+  "thresholds": {
+    "task_success": 0.8,
+    "groundedness": 0.9,
+    "citation_correctness": 0.9,
+    "completeness": 0.9
+  },
+  "cases": [
+    {
+      "id": "wf-01",
+      "name": "Weekly executive business review",
+      "workflow": "weekly_business_review",
+      "expect": {
+        "intent": "weekly_business_review",
+        "sections": [
+          "KPI scorecard",
+          "Anomalies",
+          "Likely causes and business context"
+        ],
+        "contains": [
+          "Pipeline coverage",
+          "Median resolution time"
+        ],
+        "min_citations": 3,
+        "min_actions": 2
+      }
+    },
+    {
+      "id": "wf-02",
+      "name": "Customer support escalation",
+      "workflow": "support_escalation",
+      "expect": {
+        "intent": "support_escalation",
+        "sections": [
+          "SLA breaches",
+          "Recurring problems",
+          "Known fixes and workarounds"
+        ],
+        "contains": [
+          "SSO login failures"
+        ],
+        "min_citations": 3,
+        "min_actions": 1
+      }
+    },
+    {
+      "id": "wf-03",
+      "name": "Enterprise knowledge research",
+      "workflow": "knowledge_research",
+      "expect": {
+        "intent": "knowledge_research",
+        "sections": [
+          "Findings"
+        ],
+        "contains": [
+          "single cloud region"
+        ],
+        "min_citations": 3,
+        "min_actions": 0
+      }
+    },
+    {
+      "id": "wf-04",
+      "name": "Meeting to execution",
+      "workflow": "meeting_to_execution",
+      "expect": {
+        "intent": "meeting_to_execution",
+        "sections": [
+          "Decisions",
+          "Action items"
+        ],
+        "contains": [
+          "Ravi Menon",
+          "SSO certificate automation"
+        ],
+        "min_citations": 1,
+        "min_actions": 5
+      }
+    },
+    {
+      "id": "wf-05",
+      "name": "Free-form: churn drivers",
+      "request": "Why are customers churning and what do we recommend? Cite the evidence.",
+      "expect": {
+        "intent": "knowledge_research",
+        "sections": [
+          "Findings"
+        ],
+        "contains": [
+          "SSO"
+        ],
+        "min_citations": 1,
+        "min_actions": 0
+      }
+    },
+    {
+      "id": "wf-06",
+      "name": "Free-form: escalation policy",
+      "request": "When must a priority-one ticket be escalated to tier three?",
+      "expect": {
+        "intent": "knowledge_research",
+        "sections": [
+          "Findings"
+        ],
+        "contains": [
+          "tier three"
+        ],
+        "min_citations": 1,
+        "min_actions": 0
+      }
+    },
+    {
+      "id": "wf-06b",
+      "name": "Free-form: operational risks and owners",
+      "request": "What are our major operational risks and who owns them?",
+      "expect": {
+        "intent": "knowledge_research",
+        "sections": [
+          "Findings"
+        ],
+        "contains": [
+          "vendor"
+        ],
+        "min_citations": 2,
+        "min_actions": 0
+      }
+    },
+    {
+      "id": "wf-07",
+      "name": "Unanswerable question is not fabricated",
+      "request": "What is the capital expenditure budget for Project Lighthouse in Antarctica?",
+      "expect": {
+        "intent": "knowledge_research",
+        "sections": [],
+        "not_contains": [
+          "Lighthouse budget is"
+        ],
+        "max_citations": 0,
+        "min_actions": 0,
+        "abstain": true
+      }
+    }
+  ]
+}

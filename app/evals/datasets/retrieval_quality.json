@@ -1,0 +1,22 @@
+{
+  "id": "retrieval_quality",
+  "name": "Retrieval quality",
+  "kind": "retrieval",
+  "description": "Hand-labelled queries over the synthetic Meridian corpus. Measures Recall@5, MRR and NDCG@5 of hybrid retrieval with reranking.",
+  "k": 5,
+  "thresholds": {"recall_at_k": 0.85, "mrr": 0.7, "ndcg_at_k": 0.7},
+  "cases": [
+    {"id": "ret-01", "query": "What are the major operational risks?", "relevant": [{"file": "operational-risk-register.md"}]},
+    {"id": "ret-02", "query": "workaround for SSO login failures after certificate rotation", "relevant": [{"file": "known-issues-knowledge-base.md", "heading": "SSO"}]},
+    {"id": "ret-03", "query": "root cause of the payments outage", "relevant": [{"file": "incident-postmortem-payments-outage.md"}]},
+    {"id": "ret-04", "query": "when must a priority-one ticket be escalated to tier three", "relevant": [{"file": "support-escalation-policy.md"}]},
+    {"id": "ret-05", "query": "why are customers churning", "relevant": [{"file": "customer-churn-analysis.md"}]},
+    {"id": "ret-06", "query": "Halcyon Freight Data contract expiry and vendor concentration", "relevant": [{"file": "vendor-dependency-assessment.md"}, {"file": "operational-risk-register.md", "heading": "R-04"}]},
+    {"id": "ret-07", "query": "Project Atlas beta launch criteria", "relevant": [{"file": "product-roadmap-launch-readiness.md"}]},
+    {"id": "ret-08", "query": "on-call load and engineering capacity for roadmap work", "relevant": [{"file": "engineering-capacity-oncall-report.md"}]},
+    {"id": "ret-09", "query": "how long are support tickets and audit logs retained", "relevant": [{"file": "data-retention-privacy-policy.txt"}]},
+    {"id": "ret-10", "query": "audit findings on access reviews and credential rotation", "relevant": [{"file": "security-compliance-audit-summary.md"}]},
+    {"id": "ret-11", "query": "nightly data sync delays stale dashboards fix", "relevant": [{"file": "known-issues-knowledge-base.md", "heading": "sync"}]},
+    {"id": "ret-12", "query": "pipeline coverage and net new ARR against target", "relevant": [{"file": "weekly-business-review-notes.md"}]}
+  ]
+}

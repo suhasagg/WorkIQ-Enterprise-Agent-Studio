@@ -1,0 +1,42 @@
+# Local demo stack: PostgreSQL + pgvector, FastAPI backend, Next.js frontend.
+#   docker compose up --build     then open http://localhost:3000
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_DB: workiq
+      POSTGRES_USER: workiq
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-workiq}
+    volumes: ["pgdata:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U workiq -d workiq"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  api:
+    build: .
+    environment:
+      DATABASE_URL: postgresql://workiq:${POSTGRES_PASSWORD:-workiq}@postgres:5432/workiq
+      ENV: ${ENV:-dev}
+      DEMO_MODE: ${DEMO_MODE:-true}
+      JWT_SECRET: ${JWT_SECRET:-}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000}
+      MODEL_PROVIDER: ${MODEL_PROVIDER:-auto}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-}
+    volumes: ["uploads:/app/data/uploads"]
+    ports: ["8140:8140"]
+    depends_on:
+      postgres: { condition: service_healthy }
+
+  web:
+    build:
+      context: ./web
+      args: { API_URL: "http://api:8140" }
+    ports: ["3000:3000"]
+    depends_on:
+      api: { condition: service_healthy }
+
+volumes: { pgdata: {}, uploads: {} }
