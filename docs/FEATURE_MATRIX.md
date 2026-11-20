@@ -81,8 +81,4 @@ Each requirement, where it lives and how it was checked. "pytest" refers to `tes
 | Dark / light theme, responsive | theme toggle, mobile drawer | e2e theme test; screenshots 30–33, 40, 41 |
 | Loading, error and empty states | `Async`, `ErrorBox`, `Empty` | Vitest `Async states` |
 
-## Not verified
 
-- OpenAI model and embedding mode (no key).
-- GitHub remote MCP (no token).
-- OTLP export and LangSmith tracing (no endpoint or key).
