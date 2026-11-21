@@ -15,6 +15,24 @@ and the whole run is checkpointed in PostgreSQL so it survives a restart.
 
 ---
 
+
+## 🎬 Watch the Product Demo
+
+[![WorkIQ Enterprise Agent Studio — Product Demo](docs/screenshots/01-command-center.png)](https://www.loom.com/share/e58092ce7f414e71a4c624cbaa03bcb1)
+
+### [▶ Watch the Full 10-Minute Product Demo on Loom](https://www.loom.com/share/e58092ce7f414e71a4c624cbaa03bcb1)
+
+Explore WorkIQ Enterprise Agent Studio, a Microsoft 365-inspired enterprise AI orchestration platform built using LangGraph, MCP, FastAPI, Next.js, and PostgreSQL.
+
+**Demo Highlights:**
+- Multi-agent orchestration and LangGraph workflows
+- Microsoft 365-inspired enterprise automation
+- MCP integrations and governed tool execution
+- Human-in-the-loop approvals
+- Enterprise RAG and knowledge retrieval
+- AI security, observability, and evaluations
+
+
 ## Why this exists
 
 Most agent demos stop at a chat box calling one tool. Real operational work needs more than that: plans that can be
